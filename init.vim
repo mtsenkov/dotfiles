@@ -7,6 +7,8 @@ set backspace=indent,eol,start
 syntax on
 set relativenumber
 set nu rnu " relative line numbering
+set cursorcolumn
+set formatoptions-=ro " do not add a comment on new line if previous is commented out
 
 " Search related
 set showmatch "highlights matching brackets
@@ -91,6 +93,16 @@ inoremap <Right> <ESC>:echoe "Use l"<CR>
 inoremap <Up>    <ESC>:echoe "Use k"<CR>
 inoremap <Down>  <ESC>:echoe "Use j"<CR>
 
+inoremap <C-Space> <C-n>
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+" moving between buffers
+" nnoremap <C-Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
+
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
@@ -158,8 +170,13 @@ colorscheme base16-onedark
 hi Normal guibg=NONE ctermbg=NONE
 " or Vim<8, replace EndOfBuffer by NonText
 autocmd vimenter * hi EndOfBuffer guibg=NONE ctermbg=NONE
+" Remove line number background color
+hi LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+" relative number color
+hi CursorLineNr   term=bold ctermfg=105 gui=bold guifg=#8787ff
 highlight CursorColumn guibg=#404040
-" Language support
+
+"Language support
 
 " c++11 support in syntastic
 let g:syntastic_cpp_compiler = 'clang++'
